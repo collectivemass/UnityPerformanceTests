@@ -1,0 +1,54 @@
+﻿Unity Lists VS Arrays
+*********************
+
+This has always been a bone of contention for me. For must of my dev career I believed that arrays were faster than lists.
+It just makes sense because I assume arrays are on a lower level than the object List<>.
+
+Tests:
+ - Mono & IL2CPP
+ 	- Creation
+	- Itteration
+	- Itteration caching length / Count
+	- Itteration with assignment
+	- Adjust for collection length (100, 1000, 10000, 1000000)
+	- Adjust for types (int, string, GameObject)
+
+Metrics
+ - Garbage
+ - CPU perf
+
+
+Results (in MS)
+
+Creation In Editor
+[Create] Array of 100 took 0.007033348
+[Create] List of 100 took 0.09000301
+[Create] Array of 1000 took 0.003933907
+[Create] List of 1000 took 0.005960464
+[Create] Array of 10000 took 0.02408028
+[Create] List of 10000 took 0.02908707
+[Create] Array of 1000000 took 2.197981
+[Create] List of 1000000 took 2.132058
+
+Creation in Editor, written to file stream
+0.09799004
+0.08904934
+0.00500679
+0.006914139
+0.02896786
+0.02598763
+2.968907
+8.430958
+
+Create and Assign Editor
+[Create & Assign] Array 100, Time 0.143051100
+[Create & Assign] List<> 100, Time 0.127077100
+[Create & Assign] Array 1000, Time 0.023007390
+[Create & Assign] List<> 1000, Time 0.018954280
+[Create & Assign] Array 10000, Time 0.169992400
+[Create & Assign] List<> 10000, Time 0.155091300
+[Create & Assign] Array 1000000, Time 12.197020000
+[Create & Assign] List<> 1000000, Time 15.195010000
+
+
+

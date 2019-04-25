@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class localVariableAssignment : MonoBehaviour {
+public class LocalVariableAssignment : MonoBehaviour {
 
     public Transform assetToRotate;
 

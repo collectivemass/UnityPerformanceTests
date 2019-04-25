@@ -6,5 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/LocalVariableAssignment.unity
-    guid: f57d3ba00683e44ba91f380845b174f6
+    path: Assets/Scenes/ListsVsArrays.unity
+    guid: a467f9d02d66f4c40afcc2650c2061f4
+  m_configObjects: {}

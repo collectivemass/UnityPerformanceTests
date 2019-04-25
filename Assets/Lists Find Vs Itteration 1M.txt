@@ -1,0 +1,13 @@
+Get Last
+================
+Itteration 47.974590000
+List Find 41.551830000
+List Find 35.991670000
+Itteration 46.632770000
+
+Get Mid
+================
+Itteration 22.364850000
+List Find 17.382620000
+List Find 17.979860000
+Itteration 24.992230000
