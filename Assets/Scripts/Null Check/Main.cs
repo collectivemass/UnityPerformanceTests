@@ -10,7 +10,7 @@ using TMPro;
 //*********************************
 //* NAMESPACE
 //*********************************
-namespace UnityTests.ListsFindVsItteration{
+namespace UnityTests.NullCheck{
 
 	public class Data {
 		public string name;
@@ -43,11 +43,12 @@ namespace UnityTests.ListsFindVsItteration{
 		private TextMeshProUGUI textOutput;
 		[SerializeField]
 		private OutputType outputType;
+		[SerializeField]
+		private Object objectToCheck;
 
 		//*********************************
 		//* VARIABLES
 		//*********************************
-		private List<Data> listOfData = new List<Data>();
 		private StreamWriter metricStream;
 		private float metricTimeStart;
 
@@ -66,67 +67,55 @@ namespace UnityTests.ListsFindVsItteration{
 
 			//*** Variables
 			int i;
-
-			//*** Loop through sizes
-			for(i=0; i<LENGTH; i++){
-				listOfData.Add(new Data {
-					name = System.Guid.NewGuid().ToString(),
-					value = Random.Range(int.MinValue, int.MaxValue)
-				});
-			}
 		}
 		private void Run(){
 
 			//*** Init Metrics
 			Metric_Init();
 
-			string toFindEnd = listOfData[listOfData.Count - 1].name;
-			string toFindMid = listOfData[Mathf.FloorToInt(listOfData.Count * 0.5f)].name;
-
-
-			Get(toFindEnd);
-			Get(toFindEnd);
-			Get(toFindEnd);
-			Get(toFindMid);
-			Get(toFindMid);
-			Get(toFindMid);
-
+			Get_B();
+			Get_A();
+			Get_B();
+			Get_C();
+			Get_B();
+			Get_A();
+			Get_C();
+			Get_A();
+			Get_B();
 
 			//*** Write Metrics to disk
 			Metric_Flush();
 		}
 
-		private void Get(string pObjectToFind) {
-			Data foundObject;
-			
+		private void Get_A() {
 			
 			Metric_Start();
-			for (int i = 0; i < listOfData.Count; i++) {
-				if (listOfData[i].name == pObjectToFind) {
-					foundObject = listOfData[i];
-					break;
+			for (int i = 0; i < LENGTH; i++) {
+				if (objectToCheck == null) {
+				} else {
 				}
 			}
-			Metric_Stop("Itteration ");
+			Metric_Stop("Null ");
+		}
+		private void Get_B() {
 
 			Metric_Start();
-			foundObject = listOfData.Find(objectToFind => objectToFind.name == pObjectToFind);
-			Metric_Stop("List Find ");
-
-
-
-			Metric_Start();
-			foundObject = listOfData.Find(objectToFind => objectToFind.name == pObjectToFind);
-			Metric_Stop("List Find ");
-			
-			Metric_Start();
-			for (int i = 0; i < listOfData.Count; i++) {
-				if (listOfData[i].name == pObjectToFind) {
-					foundObject = listOfData[i];
-					break;
+			for (int i = 0; i < LENGTH; i++) {
+				if (ReferenceEquals(objectToCheck, null)) {
+				} else {
 				}
 			}
-			Metric_Stop("Itteration ");
+			Metric_Stop("Ref Comp ");
+		}
+		private void Get_C() {
+
+			Metric_Start();
+			for (int i = 0; i < LENGTH; i++) {
+				if (objectToCheck is null) {
+				} else {
+				}
+			}
+			Metric_Stop("is Null ");
 		}
 
 		//*********************************
