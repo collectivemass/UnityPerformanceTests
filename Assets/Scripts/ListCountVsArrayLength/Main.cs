@@ -10,7 +10,7 @@ using TMPro;
 //*********************************
 //* NAMESPACE
 //*********************************
-namespace UnityTests.NullCheck{
+namespace UnityTests.ListCountVsArrayLength{
 
 	public class Data {
 		public string name;
@@ -34,7 +34,7 @@ namespace UnityTests.NullCheck{
 		//*********************************
 		//* CONSTANTS
 		//*********************************
-		private const int LENGTH = 1000;
+		private const int LENGTH = 1000000;
 
 		//*********************************
 		//* PROPERTIES
@@ -43,14 +43,14 @@ namespace UnityTests.NullCheck{
 		private TextMeshProUGUI textOutput;
 		[SerializeField]
 		private OutputType outputType;
-		[SerializeField]
-		private Object objectToCheck = null;
 
 		//*********************************
 		//* VARIABLES
 		//*********************************
 		private StreamWriter metricStream;
 		private float metricTimeStart;
+		private List<int> list;
+		private int[] array;
 
 		//*********************************
 		//* UNITY MESSAGES
@@ -67,71 +67,64 @@ namespace UnityTests.NullCheck{
 
 			//*** Variables
 			int i;
-			//objectToCheck = null;
+
+			list = new List<int>();
+			array = new int[LENGTH];
+			for (i=0; i<LENGTH; i++) {
+				list.Add(Random.Range(int.MinValue, int.MaxValue));
+				array[i] = Random.Range(int.MinValue, int.MaxValue);
+			}
 		}
 		private void Run(){
 
 			//*** Init Metrics
 			Metric_Init();
 
-			Get_B();
 			Get_A();
 			Get_B();
 			Get_C();
-			Get_B();
+			Get_D();
 			Get_A();
+			Get_B();
 			Get_C();
+			Get_D();
 			Get_A();
 			Get_B();
+			Get_C();
+			Get_D();
 
 			//*** Write Metrics to disk
 			Metric_Flush();
 		}
 
 		private void Get_A() {
-
-			int countIs = 0;
-			int countNot = 0;
-
 			Metric_Start();
-			for (int i = 0; i < LENGTH; i++) {
-				if (objectToCheck == null) {
-					countIs++;
-				} else {
-					countNot++;
-				}
+			for (int i = 0; i < array.Length; i++) {
 			}
-			Metric_Stop("Null    " + countIs + " " + countNot + " ");
+			Metric_Stop("Array.Length ");
 		}
+
 		private void Get_B() {
-
-			int countIs = 0;
-			int countNot = 0;
-
 			Metric_Start();
-			for (int i = 0; i < LENGTH; i++) {
-				if (ReferenceEquals(objectToCheck, null)) {
-					countIs++;
-				} else {
-					countNot++;
-				}
+			for (int i = 0; i < list.Count; i++) {
 			}
-			Metric_Stop("Ref Comp " + countIs + " " + countNot + " ");
+			Metric_Stop("List.Count ");
 		}
+
 		private void Get_C() {
-
-			int countIs = 0;
-			int countNot = 0;
-
 			Metric_Start();
-			for (int i = 0; i < LENGTH; i++) {
-				if (objectToCheck is null) {
-					countIs++;
-				} else {
-					countNot++;
-				}
+			int xCount = array.Length;
+			for (int i = 0; i < xCount; i++) {
 			}
-			Metric_Stop("is Null  " + countIs + " " + countNot + " ");
+			Metric_Stop("Array Cache Length ");
+		}
+
+		private void Get_D() {
+			Metric_Start();
+			int xCount = list.Count;
+			for (int i = 0; i < xCount; i++) {
+			}
+			Metric_Stop("List Cache Count ");
 		}
 
 		//*********************************
