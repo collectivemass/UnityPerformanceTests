@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/ListCountVsArrayLength.unity
-    guid: db1609b7b57404d9295b6ca8258f6cdb
+    path: Assets/Scenes/PropertiesVsPublicVariables.unity
+    guid: d5f67eed90a494b60a07f41a1931dbcd
   m_configObjects: {}
