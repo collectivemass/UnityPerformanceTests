@@ -1,4 +1,4 @@
-﻿//*********************************
+//*********************************
 //* MAIN CONTROLLER CLASS FOR TEST
 //*********************************
 using System.Collections.Generic;
@@ -57,7 +57,6 @@ namespace UnityTests.PropertiesVsPublicVariables{
 
 		private ObjectA objectA = new ObjectA();
 		private ObjectB objectB = new ObjectB();
-		private int valueToSet;
 
 		//*********************************
 		//* UNITY MESSAGES
@@ -119,7 +118,6 @@ namespace UnityTests.PropertiesVsPublicVariables{
 			int value = 0;
 			for (int i = 0; i < COUNT; i++) {
 				value = objectA.value;
-				valueToSet = value;
 			}
 			Metric_Stop("Variable Get ");
 		}
@@ -129,7 +127,6 @@ namespace UnityTests.PropertiesVsPublicVariables{
 			int value = 0;
 			for (int i = 0; i < COUNT; i++) {
 				value = objectB.value;
-				valueToSet = value;
 			}
 			Metric_Stop("Property Get ");
 		}
@@ -161,8 +158,6 @@ namespace UnityTests.PropertiesVsPublicVariables{
 			} else {
 				textOutput.text += "\n" + output;
 			}
-
-			Debug.Log(output);
 		}
 		private void Metric_Flush(){
 			if (outputType == OutputType.File) {
