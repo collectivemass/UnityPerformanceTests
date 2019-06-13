@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/PropertiesVsPublicVariables.unity
-    guid: d5f67eed90a494b60a07f41a1931dbcd
+    path: Assets/Scenes/GameObjectDotTransform.unity
+    guid: d942ada53ec554e1098ef47258841fbb
   m_configObjects: {}
