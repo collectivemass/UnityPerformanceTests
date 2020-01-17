@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/GameObjectDotTransform.unity
-    guid: d942ada53ec554e1098ef47258841fbb
+    path: Assets/Scenes/BestTimeSystem.unity
+    guid: 76a2151273fa542bbaec8c039a8a8899
   m_configObjects: {}
